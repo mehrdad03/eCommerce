@@ -19,7 +19,6 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        @livewireStyles
     </head>
     <body class="antialiased">
 
@@ -130,9 +129,5 @@
                 </div>
             </div>
         </div>
-
-        {{$slot}}
-
-        @livewireScripts
     </body>
 </html>
