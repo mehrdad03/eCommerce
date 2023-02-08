@@ -13,7 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('carts', function (Blueprint $table) {
+            $table->id();
+            $table->string('address_en');
+            $table->string('address_fa');
+            $table->string('city');
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -13,7 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_fa')->unique();
+            $table->string('name_en')->unique();
+            $table->string('slug_fa')->unique();
+            $table->string('slug_en')->unique();
+            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

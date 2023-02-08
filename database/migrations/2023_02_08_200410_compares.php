@@ -13,7 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('compares', function (Blueprint $table) {
+            $table->id();
+            $table->string('compare_en');
+            $table->string('compare_fa');
+            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -13,7 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en');
+            $table->string('name_fa');
+            $table->string('email');
+            $table->integer('phone');
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

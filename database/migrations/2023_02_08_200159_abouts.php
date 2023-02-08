@@ -13,7 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('abouts', function (Blueprint $table) {
+            $table->id();
+            $table->string('desc_en');
+            $table->string('desc_fa');
+            $table->string('image');
+            $table->timestamps();
+        });
     }
 
     /**

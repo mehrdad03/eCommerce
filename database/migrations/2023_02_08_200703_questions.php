@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('questions', function (Blueprint $table) {
+            $table->id();
+            $table->string('question_en');
+            $table->string('question_fa');
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

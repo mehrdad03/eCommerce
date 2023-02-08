@@ -13,7 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sellers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en');
+            $table->string('name_fa');
+            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

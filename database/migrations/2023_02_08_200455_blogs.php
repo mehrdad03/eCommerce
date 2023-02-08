@@ -13,7 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->id();
+            $table->string('desc_en');
+            $table->string('desc_fa');
+            $table->string('title');
+            $table->string('image');
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**
