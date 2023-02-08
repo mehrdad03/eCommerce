@@ -150,5 +150,3 @@
 <script src="assets/js/vendors/slick.js"></script>
 <script src="assets/js/main.js?v=2.1"></script>
 <script src="assets/js/shop.js?v=1.2.1"></script>
-</body>
-</html>
