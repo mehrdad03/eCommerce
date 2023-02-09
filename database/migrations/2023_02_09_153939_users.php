@@ -12,10 +12,16 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->id();
-            $table->integer('size');
-            $table->foreignId('category_id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->integer('phone')->unique();
+            $table->integer('bank_card')->unique();
+            $table->integer('birthday_date')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

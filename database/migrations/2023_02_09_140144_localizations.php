@@ -12,12 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('translations', function (Blueprint $table) {
+        Schema::table('localizations', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->longText('name');
             $table->text('slug');
             $table->string('type');
-            $table->foreignId('property_id');
+            $table->foreignId('property_id')->nullable();
             $table->string('local');
         });
     }
