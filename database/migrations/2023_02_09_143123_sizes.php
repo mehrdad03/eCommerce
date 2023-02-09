@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sellers', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->integer('size');
             $table->timestamps();
         });
     }

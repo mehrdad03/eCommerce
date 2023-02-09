@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->string('attr_en');
-            $table->string('attr_fa');
+            $table->string('attr');
             $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
             $table->integer('parent');
             $table->timestamps();

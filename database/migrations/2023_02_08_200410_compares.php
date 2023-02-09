@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('compares', function (Blueprint $table) {
             $table->id();
-            $table->string('compare_en');
-            $table->string('compare_fa');
+            $table->text('compare');
             $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('address_en');
-            $table->string('address_fa');
+            $table->text('address');
             $table->string('city');
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();

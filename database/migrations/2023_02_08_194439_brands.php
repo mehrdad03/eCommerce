@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name_fa')->unique();
-            $table->string('name_en')->unique();
-            $table->string('slug_fa')->unique();
-            $table->string('slug_en')->unique();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('image');
             $table->timestamps();
         });
