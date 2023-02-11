@@ -8,6 +8,6 @@ class Detail extends Component
 {
     public function render()
     {
-        return view('livewire.admin.order.detail');
+        return view('admin.livewire.order.detail')->extends('admin.layouts.app');
     }
 }

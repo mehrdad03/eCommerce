@@ -8,6 +8,6 @@ class Edit extends Component
 {
     public function render()
     {
-        return view('livewire.admin.brand.edit');
+        return view('admin.livewire.brand.edit')->extends('admin.layouts.app');
     }
 }

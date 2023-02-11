@@ -8,6 +8,6 @@ class Profile extends Component
 {
     public function render()
     {
-        return view('livewire.admin.seller.profile');
+        return view('admin.livewire.seller.profile')->extends('admin.layouts.app');
     }
 }

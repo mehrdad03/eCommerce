@@ -8,6 +8,6 @@ class Card extends Component
 {
     public function render()
     {
-        return view('livewire.admin.seller.card');
+        return view('admin.livewire.seller.profile')->extends('admin.layouts.app');
     }
 }

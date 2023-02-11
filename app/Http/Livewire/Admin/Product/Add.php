@@ -8,6 +8,6 @@ class Add extends Component
 {
     public function render()
     {
-        return view('livewire.admin.product.add');
+        return view('admin.livewire.product.add')->extends('admin.layouts.app');
     }
 }

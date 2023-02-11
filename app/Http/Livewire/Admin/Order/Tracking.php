@@ -8,6 +8,6 @@ class Tracking extends Component
 {
     public function render()
     {
-        return view('livewire.admin.order.tracking');
+        return view('admin.livewire.order.tracking')->extends('admin.layouts.app');
     }
 }

@@ -8,6 +8,6 @@ class Login extends Component
 {
     public function render()
     {
-        return view('livewire.admin.auth.login');
+        return view('admin.livewire.auth.login')->extends('admin.layouts.app');
     }
 }
