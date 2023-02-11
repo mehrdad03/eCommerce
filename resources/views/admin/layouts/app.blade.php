@@ -16,7 +16,7 @@
 </head>
 <body>
 {{--<livewire:admin.layouts.header/>--}}
-<livewire:index.index/>
+{{--<livewire:index.index/>--}}
 {{--{{$slot}}--}}
 
 {{--<livewire:admin.layouts.footer/>--}}
