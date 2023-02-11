@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Index;
+namespace App\Http\Livewire\Admin\Color;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class Index extends Component
 {
     public function render()
     {
-        return view('admin.livewire.index.index');
+        return view('livewire.admin.color.index');
     }
 }

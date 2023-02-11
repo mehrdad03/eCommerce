@@ -12,18 +12,23 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg">
     <link href="assets/css/style.css?v=1.0.0" rel="stylesheet">
     <title>Ecom - Marketplace Dashboard Template</title>
+    @livewireStyles
 </head>
 <body>
-<div class="screen-overlay"></div>
+{{--<livewire:admin.layouts.header/>--}}
+<livewire:index.index/>
+{{--{{$slot}}--}}
 
-
-<script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
-<script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
-<script src="assets/js/vendors/select2.min.js"></script>
-<script src="assets/js/vendors/perfect-scrollbar.js"></script>
-<script src="assets/js/vendors/jquery.fullscreen.min.js"></script>
-<script src="assets/js/vendors/chart.js"></script>
-<script src="assets/js/main.js?v=1.0.0"></script>
-<script src="assets/js/custom-chart.js" type="text/javascript"></script>
+{{--<livewire:admin.layouts.footer/>--}}
+{{--<div class="screen-overlay"></div>--}}
+<script src="/assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/vendors/select2.min.js"></script>
+<script src="/assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="/assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="/assets/js/vendors/chart.js"></script>
+<script src="/assets/js/main.js?v=1.0.0"></script>
+<script src="/assets/js/custom-chart.js" type="text/javascript"></script>
+@livewireScripts
 </body>
 </html>
