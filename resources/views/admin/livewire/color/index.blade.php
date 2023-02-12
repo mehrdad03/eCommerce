@@ -1,8 +1,7 @@
 <section class="content-main">
     <div class="content-header">
         <div>
-            <h2 class="content-title card-title">Categories</h2>
-            <p>Add, edit or delete a category</p>
+            <h2 class="content-title card-title">انتخاب رنگ</h2>
         </div>
         <div>
             <input class="form-control bg-white" type="text" placeholder="Search Categories">
