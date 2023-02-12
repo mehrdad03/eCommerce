@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('discount')->nullable();
             $table->foreignId('size_id')->nullable();
             $table->foreignId('color_id')->nullable();
+            $table->foreignId('brand_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('currency_id')->constrained();
-            $table->foreignId('brand_id')->constrained();
             $table->foreignId('description_id');
             $table->integer('special_offer')->nullable();
             $table->integer('status')->default(0);
