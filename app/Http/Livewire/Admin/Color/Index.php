@@ -25,6 +25,7 @@ class Index extends Component
         $colors->code = $this->code;
         $colors->save();
 
+        $this->colors = Color::all();
     }
 
     public function mount()
