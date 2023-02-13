@@ -15,6 +15,7 @@ class Index extends Component
     public $localizations;
 
 
+
     public function save()
     {
         $this->validate([

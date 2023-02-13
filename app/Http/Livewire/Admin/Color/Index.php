@@ -3,30 +3,25 @@
 namespace App\Http\Livewire\Admin\Color;
 
 use App\Models\Color;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Index extends Component
 {
 
-    public $name = "";
-    public $code = "";
-
-    public $colors;
-
-    public function save()
+    public function saveColor($formData, Color $colors)
     {
-        $this->validate([
+
+        $validator = Validator::make($formData, [
             'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u'
+            'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
         ]);
 
-        $colors = new Color();
-        $colors->name = $this->name;
-        $colors->code = $this->code;
-        $colors->save();
-
+        $validator->validate();
+        $colors = $colors->saveColor($formData);
         $this->colors = Color::all();
     }
+
 
     public function mount()
     {

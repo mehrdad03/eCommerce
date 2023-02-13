@@ -11,17 +11,17 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <form wire:submit.prevent="save">
+                    <form wire:submit.prevent="saveColor(Object.fromEntries(new FormData($event.target)))">
                         @csrf
                         <div class="mb-4">
                             <label class="form-label" for="name">نام رنگ</label>
-                            <input wire:model="name" class="form-control" id="name" type="text"
+                            <input class="form-control" name="name" id="name" type="text"
                                    placeholder="نام رنگ را تایپ کنید">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label" for="color">انتخاب رنگ</label>
-                            <input wire:model="code" class="form-control-color" id="color" type="color">
+                            <input class="form-control-color" name="code" id="code" type="color">
                         </div>
 
                         <div class="d-grid">
