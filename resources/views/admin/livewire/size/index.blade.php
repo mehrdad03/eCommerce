@@ -11,17 +11,17 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <form wire:submit.prevent="save">
+                    <form wire:submit.prevent="saveSize(Object.fromEntries(new FormData($event.target)))">
                         @csrf
                         <div class="mb-4">
-                            <label class="form-label" for="size">سایز</label>
-                            <input wire:model="size" class="form-control" id="name" type="text"
+                            <label class="form-label" for="text">سایز</label>
+                            <input  class="form-control" name="size" id="size" type="text"
                                    placeholder="سایز را تایپ کنید">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">انتخاب دسته بندی</label>
-                            <select wire:model="category_id" class="form-select"
+                            <select  class="form-select"
                             name="category_id" id="category_id">
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)

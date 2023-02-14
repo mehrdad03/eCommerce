@@ -4,31 +4,25 @@ namespace App\Http\Livewire\Admin\Size;
 
 use App\Models\Localization;
 use App\Models\Size;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public $size = "";
-    public $category_id = "";
 
-    public $sizes;
-    public $localizations;
-
-
-
-    public function save()
+    public function saveSize($formData, Size $sizes)
     {
-        $this->validate([
+        $validator = Validator::make($formData, [
             'size' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u'
+            'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
         ]);
-        $sizes = new Size();
-        $sizes->size = $this->size;
-        $sizes->category_id = $this->category_id;
-        $sizes->save();
+
+        $validator->validate();
+        $sizes = $sizes->saveSize($formData);
 
         $this->sizes = Size::all();
     }
+
 
     public function mount()
     {
