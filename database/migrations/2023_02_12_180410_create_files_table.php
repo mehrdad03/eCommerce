@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
-            $table->timestamps();
+            $table->text('name');
+            $table->string('type')->default('image');
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('user_id');
+            $table->boolean('cover')->default(false);
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('files');
     }
 };
