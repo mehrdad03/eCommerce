@@ -8,7 +8,12 @@
                     <form wire:submit.prevent="saveColor(Object.fromEntries(new FormData($event.target)))">
                         <div class="mb-4">
                             <label class="form-label" for="name">@lang('form-labels.color-name')</label>
-                            <input class="form-control" name="name" id="name" type="text">
+                            <input class="form-control @error('name') error-input-border  @enderror" name="name"
+                                   id="name" type="text">
+                            @foreach ($errors->get('name') as $message)
+                                <span wire:loading.remove
+                                      class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
+                            @endforeach
                         </div>
 
                         <div class="mb-4">
@@ -51,7 +56,7 @@
                                     </td>
                                     <td>{{$color->id}}</td>
                                     <td>{{$color->name}}</td>
-                                    <td>{{$color->code}}</td>
+                                    <td><span class="d-block p-1 w-50" style="border: 1px solid;background:{{$color->code}};height: 20px;"></span>{{$color->code}}</td>
 
                                     <td class="text-end">
                                         <div class="dropdown">
