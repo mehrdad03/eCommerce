@@ -20,7 +20,6 @@ class Color extends Model
                 'code' => $formData['code'],
             ]
         );
-        return true;
     }
 }
 

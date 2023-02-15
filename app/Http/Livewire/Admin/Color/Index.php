@@ -18,16 +18,8 @@ class Index extends Component
         ]);
 
         $validator->validate();
-        $colors = $colors->saveColor($formData);
-        $this->colors = Color::all();
+        $colors->saveColor($formData);
     }
-
-
-    public function mount()
-    {
-        $this->colors = Color::all();
-    }
-
 
     public function render()
     {
