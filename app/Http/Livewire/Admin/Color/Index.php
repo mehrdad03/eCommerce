@@ -49,7 +49,7 @@ class Index extends Component
 
     public function deleteColor($color_id)
     {
-        $color = Color::query()->where('id', $color_id)->delete();
+        Color::query()->where('id', $color_id)->delete();
     }
 
     public function render()
