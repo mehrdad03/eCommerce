@@ -18,16 +18,8 @@ class Index extends Component
         ]);
 
         $validator->validate();
-        $sizes = $sizes->saveSize($formData);
+        $sizes->saveSize($formData);
 
-        $this->sizes = Size::all();
-    }
-
-
-    public function mount()
-    {
-        $this->sizes = Size::all();
-        $this->localizations = Localization::all();
     }
 
     public function render()
