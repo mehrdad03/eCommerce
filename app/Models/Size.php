@@ -19,6 +19,5 @@ class Size extends Model
                 'category_id' => $formDate['category_id']
             ]
         );
-        return true;
     }
 }
