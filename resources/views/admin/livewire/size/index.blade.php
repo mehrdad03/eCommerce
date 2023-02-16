@@ -16,7 +16,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="size">@lang('form-labels.size-size')</label>
                             <input class="form-control" @error('size') error-input-border @enderror name="size"
-                                   id="size" type="text" placeholder="سایز را تایپ کنید">
+                                   id="size" type="text" placeholder="">
                             @foreach($errors->get('$size') as $message)
                                 <sapan wire:loading.remove class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                             @endforeach
