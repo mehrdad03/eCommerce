@@ -18,5 +18,4 @@ return [
     'action' => 'Action',
     'size-size' => 'Size',
     'size-category_id' => 'Category',
-
 ];
