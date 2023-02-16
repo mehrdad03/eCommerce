@@ -8,7 +8,7 @@
                     <form wire:submit.prevent="saveColor(Object.fromEntries(new FormData($event.target)))">
                         <div class="mb-4">
                             <label class="form-label" for="name">@lang('form-labels.color-name')</label>
-                            <input value="{{@$name}}" class="form-control @error('name') error-input-border  @enderror"
+                            <input value="{{$name}}" class="form-control @error('name') error-input-border  @enderror"
                                    name="name"
                                    id="name" type="text">
                             @foreach ($errors->get('name') as $message)
@@ -19,7 +19,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="code">@lang('form-labels.color-code')</label>
-                            <input value="{{@$code}}" class="form-control" name="code" id="code" type="color">
+                            <input value="{{$code}}" class="form-control" name="code" id="code" type="color">
                         </div>
 
                         <div class="d-grid">

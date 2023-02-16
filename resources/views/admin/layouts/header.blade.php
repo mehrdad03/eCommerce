@@ -1,4 +1,3 @@
-
 <header class="main-header navbar">
     <div class="col-search">
 
