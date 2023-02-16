@@ -8,10 +8,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
-
-    public $name = '';
-    public $code = '';
-    public $color_id;
+    public $name = '', $code = '', $color_id;
 
     public function saveColor($formData, Color $colors)
     {
