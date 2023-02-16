@@ -22,6 +22,11 @@ Route::get('/', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/index', App\Http\Livewire\Admin\Index\index::class)->name('index');
+
+    Route::prefix('categories')->name('categories')->group(function () {
+        Route::get('/index', App\Http\Livewire\Admin\category\Index::class)->name('index');
+    });
+
     Route::prefix('products')->name('products.')->group(function () {
 
         Route::get('/index', App\Http\Livewire\Admin\product\Index::class)->name('index');

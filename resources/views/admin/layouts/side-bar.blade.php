@@ -11,6 +11,13 @@ a<aside class="navbar-aside" id="offcanvas_aside">
             <li class="menu-item active"><a class="menu-link" href="/admin/index"><i class="icon material-icons md-home"></i>
                     <span class="text">Dashboard</span></a></li>
             <li class="menu-item has-submenu"><a class="menu-link" href="#">
+                    <i class="icon material-icons md-category"></i>
+                    <span class="text">Category</span></a>
+                <div class="submenu">
+                    <a href="/admin/categories/index">Category List</a>
+                </div>
+            </li>
+            <li class="menu-item has-submenu"><a class="menu-link" href="#">
                     <i class="icon material-icons md-shopping_bag"></i>
                     <span class="text">Products</span></a>
                 <div class="submenu">
@@ -29,7 +36,7 @@ a<aside class="navbar-aside" id="offcanvas_aside">
             </li>
 
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
-                        class="icon material-icons md-shopping_cart"></i><span class="text">colors</span></a>
+                        class="icon material-icons md-color_lens"></i><span class="text">colors</span></a>
                 <div class="submenu"><a href="/admin/colors/index">Order list 1</a><a href="/admin/colors/create">Order
                         list 2</a><a href="/admin/colors/edit">Order detail</a>
                 </div>

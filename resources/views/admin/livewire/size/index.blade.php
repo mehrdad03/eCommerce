@@ -15,7 +15,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="size">@lang('form-labels.size-size')</label>
-                            <input class="form-control" @error('size') error-input-border @enderror name="size"
+                            <input class="form-control @error('size') error-input-border @enderror " name="size"
                                    id="size" type="text" placeholder="">
                             @foreach($errors->get('$size') as $message)
                                 <sapan wire:loading.remove class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
@@ -24,8 +24,11 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="category_id">@lang('form-labels.size-category_id')</label>
-                            <select class="form-select"
+                            <select class="form-select @error('category_id') error-input-border @enderror"
                                     name="category_id" id="category_id">
+                                @foreach($errors->get('category_id') as $message)
+                                    <sapan wire:loading.remove class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
+                                @endforeach
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)
                                     <option value="{{$localization->property_id}}">{{$localization->name}}</option>

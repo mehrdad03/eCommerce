@@ -8,6 +8,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
+
     public $name = '', $code = '', $color_id;
 
     public function saveColor($formData, Color $colors)
@@ -46,6 +47,10 @@ class Index extends Component
         $this->color_id = $color->id;
     }
 
+    public function deleteColor($color_id)
+    {
+        $color = Color::query()->where('id', $color_id)->delete();
+    }
 
     public function render()
     {

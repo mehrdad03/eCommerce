@@ -66,10 +66,8 @@
                                             <a class="btn btn-light rounded btn-sm font-sm" href="#"
                                                data-bs-toggle="dropdown"><i
                                                     class="material-icons md-more_horiz"></i></a>
-                                            <div class="dropdown-menu"><a class="dropdown-item" href="#">View detail</a><a
-                                                    class="dropdown-item" wire:click="editColor('{{$color->id}}')"
-                                                    href="#">Edit info</a><a
-                                                    class="dropdown-item text-danger" href="#">Delete</a></div>
+                                            <div class="dropdown-menu"><a class="dropdown-item" wire:click="editColor('{{$color->id}}')">Edit info</a>
+                                                <a class="dropdown-item text-danger" wire:click="deleteColor('{{$color->id}}')" >Delete</a></div>
                                         </div>
                                     </td>
                                 </tr>

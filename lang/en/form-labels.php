@@ -18,4 +18,10 @@ return [
     'action' => 'Action',
     'size-size' => 'Size',
     'size-category_id' => 'Category',
+
+    'category-local'=>'Category local',
+    'category-name'=>'Category name',
+    'category-slug'=>'Category slug',
+    'category-icon'=>'Category icon',
+    'category-category_id'=>'Category category_id',
 ];
