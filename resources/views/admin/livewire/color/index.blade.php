@@ -8,7 +8,8 @@
                     <form wire:submit.prevent="saveColor(Object.fromEntries(new FormData($event.target)))">
                         <div class="mb-4">
                             <label class="form-label" for="name">@lang('form-labels.color-name')</label>
-                            <input class="form-control @error('name') error-input-border  @enderror" name="name"
+                            <input value="{{@$name}}" class="form-control @error('name') error-input-border  @enderror"
+                                   name="name"
                                    id="name" type="text">
                             @foreach ($errors->get('name') as $message)
                                 <span wire:loading.remove
@@ -18,7 +19,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="code">@lang('form-labels.color-code')</label>
-                            <input class="form-control" name="code" id="code" type="color">
+                            <input value="{{@$code}}" class="form-control" name="code" id="code" type="color">
                         </div>
 
                         <div class="d-grid">
@@ -56,7 +57,9 @@
                                     </td>
                                     <td>{{$color->id}}</td>
                                     <td>{{$color->name}}</td>
-                                    <td><span class="d-block p-1 w-50" style="border: 1px solid;background:{{$color->code}};height: 20px;"></span>{{$color->code}}</td>
+                                    <td><span class="d-block p-1 w-50"
+                                              style="border: 1px solid;background:{{$color->code}};height: 20px;"></span>{{$color->code}}
+                                    </td>
 
                                     <td class="text-end">
                                         <div class="dropdown">
@@ -64,7 +67,8 @@
                                                data-bs-toggle="dropdown"><i
                                                     class="material-icons md-more_horiz"></i></a>
                                             <div class="dropdown-menu"><a class="dropdown-item" href="#">View detail</a><a
-                                                    class="dropdown-item" href="#">Edit info</a><a
+                                                    class="dropdown-item" wire:click="editColor('{{$color->id}}')"
+                                                    href="#">Edit info</a><a
                                                     class="dropdown-item text-danger" href="#">Delete</a></div>
                                         </div>
                                     </td>

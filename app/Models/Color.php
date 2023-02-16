@@ -12,10 +12,13 @@ class Color extends Model
 
     protected $guarded = [];
 
-    public function saveColor($formData)
+    public function saveColor($formData, $color_id)
     {
+
         Color::query()->updateOrCreate(
             [
+                'id' => $color_id
+            ], [
                 'name' => $formData['name'],
                 'code' => $formData['code'],
             ]
