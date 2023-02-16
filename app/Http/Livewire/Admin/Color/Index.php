@@ -8,27 +8,34 @@ use Livewire\Component;
 
 class Index extends Component
 {
-
-    public $name;
-    public $code;
-    public $color_id;
+    public $name = '', $code = '', $color_id;
 
     public function saveColor($formData, Color $colors)
     {
 
-        $validator = Validator::make($formData, [
-            'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-        ]);
-
-        $color_id = 0;
-
         if ($this->color_id != null) {
             $color_id = $this->color_id;
+            $validator = Validator::make($formData, [
+                'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+                'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+            ]);
+        } else {
+            $color_id = 0;
+            $validator = Validator::make($formData, [
+                'name' => 'required |unique:colors,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+                'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+            ]);
         }
 
         $validator->validate();
+        $this->resetValidation();
         $colors->saveColor($formData, $color_id);
+
+        //reset values after edit
+        $this->name = '';
+        $this->code = '';
+        $this->color_id = '';
+
     }
 
     public function editColor($color_id)
