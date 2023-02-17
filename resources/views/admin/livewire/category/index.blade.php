@@ -124,14 +124,14 @@
                                             <input class="form-check-input" type="checkbox" value="">
                                         </div>
                                     </td>
-                                    <td>{{$category}}</td>
-                                    <td><b>Men clothes</b></td>
+                                    <td>#</td>
+                                    <td>{{$category->category_id->$localization->name ?? 'name'}}</td>
                                     <td>Men clothes</td>
                                     <td>/men</td>
                                     <td>1</td>
                                     <td class="text-end">
                                         <div class="dropdown">
-                                            <a class="btn btn-light rounded btn-sm font-sm" href="#" data-bs-toggle="dropdown">
+                                            <a class="btn btn-light rounded btn-sm font-sm"  data-bs-toggle="dropdown">
                                                 <i class="material-icons md-more_horiz"></i>
                                             </a>
                                             <div class="dropdown-menu">
@@ -140,6 +140,7 @@
                                             </div>
                                         </div>
                                     </td>
+
                                 </tr>
                             @endforeach
                             </tbody>

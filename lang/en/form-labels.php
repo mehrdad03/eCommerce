@@ -24,4 +24,9 @@ return [
     'category-slug'=>'Category slug',
     'category-icon'=>'Category icon',
     'category-category_id'=>'Category category_id',
+
+    'brand-local' => 'Brand local',
+    'brand-name' => 'Brand name',
+    'brand-slug' => 'Brand slug',
+    'brand-category_id' => 'Brand category_id',
 ];
