@@ -15,19 +15,22 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="size">@lang('form-labels.size-size')</label>
-                            <input class="form-control @error('size') error-input-border @enderror " name="size"
-                                   id="size" type="text" placeholder="">
-                            @foreach($errors->get('$size') as $message)
+                            <input value="{{$size}}" class="form-control @error('size') error-input-border @enderror "
+                                   name="size"
+                                   id="size" type="text" placeholder="type size">
+                            @foreach($errors->get('size') as $message)
                                 <sapan wire:loading.remove class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                             @endforeach
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label" for="category_id">@lang('form-labels.size-category_id')</label>
-                            <select class="form-select @error('category_id') error-input-border @enderror"
+                            <select value="{{$category_id}}"
+                                    class="form-select @error('category_id') error-input-border @enderror"
                                     name="category_id" id="category_id">
                                 @foreach($errors->get('category_id') as $message)
-                                    <sapan wire:loading.remove class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
+                                    <sapan wire:loading.remove
+                                           class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)
@@ -79,9 +82,11 @@
                                             <a class="btn btn-light rounded btn-sm font-sm" href="#"
                                                data-bs-toggle="dropdown"><i
                                                     class="material-icons md-more_horiz"></i></a>
-                                            <div class="dropdown-menu"><a class="dropdown-item" href="#">View detail</a><a
-                                                    class="dropdown-item" href="#">Edit info</a><a
-                                                    class="dropdown-item text-danger" href="#">Delete</a></div>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">View detail</a>
+                                                <a class="dropdown-item" wire:click="editSize('{{$size->id}}')">Edit info</a>
+                                                <a class="dropdown-item text-danger" wire:click="deleteSize('{{$size->id}}')">Delete</a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

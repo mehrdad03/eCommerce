@@ -11,12 +11,15 @@ class Size extends Model
 
     protected $guarded = [];
 
-    public function saveSize($formDate)
+    public function saveSize($formDate, $size_id)
     {
         Size::query()->updateOrCreate(
             [
-                'size' => $formDate['size'],
-                'category_id' => $formDate['category_id']
+                'id' => $size_id
+            ],
+            [
+                'size'=>$formDate['size'],
+                'category_id'=>$formDate['category_id']
             ]
         );
     }
