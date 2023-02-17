@@ -32,6 +32,7 @@
                                     <sapan wire:loading.remove
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
+
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)
                                     <option
