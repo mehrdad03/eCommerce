@@ -34,7 +34,12 @@
                                 @endforeach
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)
-                                    <option value="{{$localization->property_id}}">{{$localization->name}}</option>
+                                    <option
+                                        @if($category_id==$localization->property_id)
+                                            selected="selected"
+                                        @endif
+                                        value="{{$localization->property_id}}">{{$localization->name}}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -75,7 +80,7 @@
                                     <td>{{$size->id}}</td>
                                     <td>{{$size->size}}</td>
 
-                                    <td>{{optional($size->localization)->name}}</td>
+                                    <td>{{optional($size->localizations)->name}}</td>
 
                                     <td class="text-end">
                                         <div class="dropdown">
@@ -83,7 +88,6 @@
                                                data-bs-toggle="dropdown"><i
                                                     class="material-icons md-more_horiz"></i></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">View detail</a>
                                                 <a class="dropdown-item" wire:click="editSize('{{$size->id}}')">Edit info</a>
                                                 <a class="dropdown-item text-danger" wire:click="deleteSize('{{$size->id}}')">Delete</a>
                                             </div>
