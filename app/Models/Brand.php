@@ -11,6 +11,12 @@ class Brand extends Model
 
     protected $guarded = [];
 
+    public function parent()
+    {
+        return $this->belongsTo(Localization::class, 'category_id');
+    }
+
+
     public function saveBrand($formData, $brand_id)
     {
         $brand = Brand::query()->updateOrCreate(
@@ -23,7 +29,7 @@ class Brand extends Model
         );
         Localization::query()->updateOrCreate(
             [
-                'property_id'=>$brand_id
+                'property_id' => $brand_id
             ]
             ,
             [

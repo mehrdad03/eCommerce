@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $guarded = [];
 
+    public function parent()
+    {
+        return $this->belongsTo(Localization::class, 'category_id');
+    }
+
     public function saveCategory($formData, $cat_id)
     {
 

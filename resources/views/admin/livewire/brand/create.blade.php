@@ -100,7 +100,7 @@
                                 <th>@lang('form-labels.brand-name')</th>
                                 <th>@lang('form-labels.brand-slug')</th>
                                 <th>@lang('form-labels.brand-local')</th>
-                                <th>@lang('form-labels.brand-category_id')</th>
+{{--                                <th>@lang('form-labels.brand-category_id')</th>--}}
                                 <th class="text-end">Action</th>
                             </tr>
                             </thead>
@@ -113,10 +113,9 @@
                                     </div>
                                 </td>
                                 <td>#</td>
-                                <td><b>{{$brand->id}}</b></td>
-                                <td>Men clothes</td>
-                                <td>/men</td>
-                                <td>1</td>
+                                <td><b>{{optional($brand->parent)->name}}</b></td>
+                                <td>{{optional($brand->parent)->slug}}</td>
+                                <td>{{optional($brand->parent)->local}}</td>
                                 <td class="text-end">
                                     <div class="dropdown"><a class="btn btn-light rounded btn-sm font-sm" href="#" data-bs-toggle="dropdown"><i class="material-icons md-more_horiz"></i></a>
                                         <div class="dropdown-menu">

@@ -112,7 +112,7 @@
                                 <th>@lang('form-labels.category-slug')</th>
                                 <th>@lang('form-labels.category-local')</th>
                                 <th>@lang('form-labels.category-icon')</th>
-                                <th>@lang('form-labels.category-category_id')</th>
+{{--                                <th>@lang('form-labels.category-category_id')</th>--}}
                                 <th class="text-end">Action</th>
                             </tr>
                             </thead>
@@ -125,10 +125,10 @@
                                         </div>
                                     </td>
                                     <td>#</td>
-                                    <td>{{$category->category_id->$localization->name ?? 'name'}}</td>
-                                    <td>Men clothes</td>
-                                    <td>/men</td>
-                                    <td>1</td>
+                                    <td>{{optional($category->parent)->name}}</td>
+                                    <td>{{optional($category->parent)->slug}}</td>
+                                    <td>{{optional($category->parent)->local}}</td>
+                                    <td>{{$category->icon}}</td>
                                     <td class="text-end">
                                         <div class="dropdown">
                                             <a class="btn btn-light rounded btn-sm font-sm"  data-bs-toggle="dropdown">
