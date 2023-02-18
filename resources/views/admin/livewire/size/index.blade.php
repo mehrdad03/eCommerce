@@ -32,6 +32,7 @@
                                     <sapan wire:loading.remove
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
+
                                 <option>دسته والد</option>
                                 @foreach($localizations as $localization)
                                     <option
@@ -80,7 +81,7 @@
                                     <td>{{$size->id}}</td>
                                     <td>{{$size->size}}</td>
 
-                                    <td>{{optional($size->localizations)->name}}</td>
+                                    <td>{{optional($size->parent)->name}}</td>
 
                                     <td class="text-end">
                                         <div class="dropdown">

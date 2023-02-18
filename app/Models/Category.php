@@ -11,20 +11,35 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function saveCategory($formData)
+    public function parent()
+    {
+        return $this->belongsTo(Localization::class, 'category_id');
+    }
+
+    public function saveCategory($formData, $cat_id)
     {
 
-        $category = Category::query()->updateOrCreate([
-            'category_id' => $formData['category_id'],
-            'icon' => $formData['icon'],
-        ]);
+        $category = Category::query()->updateOrCreate(
+            [
+                'id' => $cat_id
+            ],
+            [
+                'category_id' => $formData['category_id'],
+                'icon' => $formData['icon'],
+            ]
+        );
 
-        Localization::query()->updateOrCreate([
-            'name' => $formData['name'],
-            'slug' => $formData['slug'],
-            'type' => 'category',
-            'property_id' =>$category->id,
-            'local' => $formData['local']
-        ]);
+        Localization::query()->updateOrCreate(
+            [
+                'property_id' => $cat_id
+            ],
+            [
+                'name' => $formData['name'],
+                'slug' => $formData['slug'],
+                'type' => 'category',
+                'property_id' => $category->id,
+                'local' => $formData['local']
+            ]
+        );
     }
 }

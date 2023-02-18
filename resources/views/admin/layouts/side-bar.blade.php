@@ -1,5 +1,5 @@
-a<aside class="navbar-aside" id="offcanvas_aside">
-    <div class="aside-top"><a class="brand-wrap" href="/admin/index"><img class="logo" src="//assets/imgs/theme/logo.svg" alt="Evara Dashboard">
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top"><a class="brand-wrap" href="/admin/index"><img class="logo" src="/admin/assets/imgs/theme/logo.svg" alt="Evara Dashboard">
         </a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i>
@@ -42,15 +42,17 @@ a<aside class="navbar-aside" id="offcanvas_aside">
                 </div>
             </li>
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
-                        class="icon material-icons md-shopping_cart"></i><span class="text">sizes</span></a>
+                        class="icon material-icons md-format_size"></i><span class="text">sizes</span></a>
                 <div class="submenu"><a href="/admin/sizes/index">Order list 1</a><a href="/admin/sizes/create">Order
                         list 2</a><a href="/admin/sizes/edit">Order detail</a>
                 </div>
             </li>
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
-                        class="icon material-icons md-shopping_cart"></i><span class="text">brands</span></a>
-                <div class="submenu"><a href="/admin/brands/index">Order list 1</a><a href="/admin/brands/create">Order
-                        list 2</a><a href="/admin/brands/edit">Order detail</a>
+                        class="icon material-icons md-branding_watermark"></i><span class="text">brands</span></a>
+                <div class="submenu">
+                    <a href="/admin/brands/index">Order list 1</a>
+                    <a href="/admin/brands/create">Order list 2</a>
+                    <a href="/admin/brands/edit">Order detail</a>
                 </div>
             </li>
 
@@ -100,4 +102,4 @@ a<aside class="navbar-aside" id="offcanvas_aside">
                         class="icon material-icons md-local_offer"></i><span class="text"> Starter page</span></a></li>
         </ul>
     </nav>
-</aside><?php
+</aside>

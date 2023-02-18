@@ -23,7 +23,6 @@
 
     @yield('content')
 
-    {{--{{$slot}}--}}
     <livewire:admin.layouts.footer/>
 
 </main>
