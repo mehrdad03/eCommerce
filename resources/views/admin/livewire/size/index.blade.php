@@ -81,7 +81,7 @@
                                     <td>{{$size->id}}</td>
                                     <td>{{$size->size}}</td>
 
-                                    <td>{{optional($size->localizations)->name}}</td>
+                                    <td>{{optional($size->parent)->name}}</td>
 
                                     <td class="text-end">
                                         <div class="dropdown">

@@ -11,6 +11,12 @@ class Size extends Model
 
     protected $guarded = [];
 
+
+    public function parent()
+    {
+        return $this->belongsTo(Localization::class,'category_id');
+    }
+
     public function saveSize($formDate, $size_id)
     {
         Size::query()->updateOrCreate(
@@ -18,8 +24,8 @@ class Size extends Model
                 'id' => $size_id
             ],
             [
-                'size'=>$formDate['size'],
-                'category_id'=>$formDate['category_id']
+                'size' => $formDate['size'],
+                'category_id' => $formDate['category_id']
             ]
         );
     }
