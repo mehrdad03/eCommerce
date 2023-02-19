@@ -1,12 +1,4 @@
 <section class="content-main">
-    <div class="content-header">
-        <div>
-            <h2 class="content-title card-title">انتخاب سایز</h2>
-        </div>
-        <div>
-            <input class="form-control bg-white" type="text" placeholder="Search Categories">
-        </div>
-    </div>
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -33,7 +25,7 @@
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
 
-                                <option>@lang('form-labels.Choose')</option>
+                                <option>@lang('form-labels.choose')</option>
                                 @foreach($localizations as $localization)
                                     <option
                                         @if($category_id==$localization->property_id)
