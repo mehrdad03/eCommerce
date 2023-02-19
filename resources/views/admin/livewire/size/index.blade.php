@@ -33,7 +33,7 @@
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
 
-                                <option>دسته والد</option>
+                                <option>@lang('form-labels.Choose')</option>
                                 @foreach($localizations as $localization)
                                     <option
                                         @if($category_id==$localization->property_id)
