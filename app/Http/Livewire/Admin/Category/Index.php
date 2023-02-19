@@ -35,7 +35,7 @@ class Index extends Component
         }
 
         $validator->validate();
-        $this->resetValidation();
+        $this->resetValidation ();
         $categories->saveCategory($formData, $cat_id);
 
         $this->local = '';
