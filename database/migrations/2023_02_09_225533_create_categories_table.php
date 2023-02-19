@@ -12,6 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
+        //nullable category_id for parent category
+
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
