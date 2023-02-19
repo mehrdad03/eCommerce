@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -35,7 +36,7 @@ class Category extends Model
             ],
             [
                 'name' => $formData['name'],
-                'slug' => $formData['slug'],
+                'slug' => Str::slug($formData['name']),
                 'type' => 'category',
                 'property_id' => $category->id,
                 'local' => $formData['local']

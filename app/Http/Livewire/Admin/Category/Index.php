@@ -19,7 +19,6 @@ class Index extends Component
             $validator = Validator::make($formData, [
                 'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'slug' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'icon' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
             ]);
@@ -28,7 +27,6 @@ class Index extends Component
             $validator = Validator::make($formData, [
                 'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'slug' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'icon' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
             ]);

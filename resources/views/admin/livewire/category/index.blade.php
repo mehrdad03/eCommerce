@@ -43,16 +43,6 @@
                             @endforeach
                         </div>
                         <div class="mb-4">
-                            <label class="form-label" for="slug">@lang('form-labels.category-slug')</label>
-                            <input value="{{$slug}}" class="form-control  @error('slug') error-input-border @enderror"
-                                   name="slug"
-                                   id="slug" type="text">
-                            @foreach ($errors->get('slug') as $message)
-                                <span wire:loading.remove
-                                      class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
-                            @endforeach
-                        </div>
-                        <div class="mb-4">
                             <label class="form-label" for="icon">@lang('form-labels.category-icon')</label>
                             <select value="{{$icon}}" class="form-select @error('icon') error-input-border @enderror"
                                     name="icon"

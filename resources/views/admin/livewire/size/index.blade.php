@@ -81,8 +81,10 @@
                                                data-bs-toggle="dropdown"><i
                                                     class="material-icons md-more_horiz"></i></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" wire:click="editSize('{{$size->id}}')">Edit info</a>
-                                                <a class="dropdown-item text-danger" wire:click="deleteSize('{{$size->id}}')">Delete</a>
+                                                <a class="dropdown-item" wire:click="editSize('{{$size->id}}')">Edit
+                                                    info</a>
+                                                <a class="dropdown-item text-danger"
+                                                   wire:click="deleteSize('{{$size->id}}')">Delete</a>
                                             </div>
                                         </div>
                                     </td>
