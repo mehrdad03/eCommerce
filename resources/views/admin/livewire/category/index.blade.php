@@ -99,7 +99,6 @@
                                 </th>
                                 <th>#</th>
                                 <th>@lang('form-labels.category-name')</th>
-                                <th>@lang('form-labels.category-slug')</th>
                                 <th>@lang('form-labels.category-local')</th>
                                 <th>@lang('form-labels.category-icon')</th>
 {{--                                <th>@lang('form-labels.category-category_id')</th>--}}
@@ -116,7 +115,6 @@
                                     </td>
                                     <td>#</td>
                                     <td>{{optional($category->parent)->name}}</td>
-                                    <td>{{optional($category->parent)->slug}}</td>
                                     <td>{{optional($category->parent)->local}}</td>
                                     <td>{{$category->icon}}</td>
                                     <td class="text-end">

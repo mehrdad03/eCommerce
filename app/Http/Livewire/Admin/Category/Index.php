@@ -17,7 +17,7 @@ class Index extends Component
         if ($this->cat_id != null) {
             $cat_id = $this->cat_id;
             $validator = Validator::make($formData, [
-                'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+                //'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'icon' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
@@ -25,7 +25,7 @@ class Index extends Component
         } else {
             $cat_id = 0;
             $validator = Validator::make($formData, [
-                'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+               // 'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'name' => 'required ||unique:categories,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'icon' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
@@ -36,7 +36,7 @@ class Index extends Component
         $this->resetValidation ();
         $categories->saveCategory($formData, $cat_id);
 
-        $this->local = '';
+        //$this->local = '';
         $this->name = '';
         $this->slug = '';
         $this->icon = '';
@@ -47,7 +47,7 @@ class Index extends Component
     public function editCategory($cat_id)
     {
         $category = Category::query()->where('id', $cat_id)->first();
-        $this->local = $category->local;
+       // $this->local = $category->local;
         $this->name = $category->name;
         $this->slug = $category->slug;
         $this->icon = $category->icon;

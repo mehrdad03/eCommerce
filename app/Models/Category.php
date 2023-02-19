@@ -39,7 +39,7 @@ class Category extends Model
                 'slug' => Str::slug($formData['name']),
                 'type' => 'category',
                 'property_id' => $category->id,
-                'local' => $formData['local']
+               // 'local' => $formData['local']
             ]
         );
     }
