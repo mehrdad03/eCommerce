@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-4">
                             <label class="form-label" for="icon">@lang('form-labels.category-icon')</label>
-                            <select value="{{$icon}}" class="form-select @error('icon') error-input-border @enderror"
+                            <select class="form-select @error('icon') error-input-border @enderror"
                                     name="icon"
                                     id="icon">
                                 @foreach($errors->get('icon') as $message)
@@ -63,7 +63,7 @@
                         <div class="mb-4">
                             <label class="form-label"
                                    for="category_id">@lang('form-labels.category-category_id')</label>
-                            <select value="{{$category_id}}"
+                            <select
                                     class="form-select @error('category_id') error-input-border @enderror"
                                     name="category_id" id="category_id">
                                 @foreach($errors->get('category_id') as $message)
