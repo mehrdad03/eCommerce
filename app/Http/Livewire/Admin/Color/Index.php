@@ -10,6 +10,7 @@ use Livewire\Component;
 class Index extends Component
 {
 
+
     public $names = [], $code = '', $color_id;
 
     public function saveColor($formData, Color $colors)
@@ -51,6 +52,8 @@ class Index extends Component
 
     }
 
+    protected $listeners = ['delete'];
+
     public function editColor($color_id)
     {
         $color = Color::query()->where('id', $color_id)->first();
@@ -69,7 +72,19 @@ class Index extends Component
         $this->color_id = $color->id;
     }
 
-    public function deleteColor($color_id)
+
+    public function deleteConfirm($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Are you sure?',
+            'text' => '',
+            'id' => $id
+        ]);
+    }
+
+
+    public function delete($color_id)
     {
         Color::query()->where('id', $color_id)->delete();
         Localization::query()->where([

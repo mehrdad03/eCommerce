@@ -26,8 +26,26 @@
     <livewire:admin.layouts.footer/>
 
 </main>
-
+@livewireScripts
 <script src="/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    window.addEventListener('swal:confirm', event => {
+        swal({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.type,
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if(willDelete) {
+                    window.livewire.emit('delete', event.detail.id);
+                }
+            });
+    });
+</script>
 <script src="/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
 <script src="/admin/assets/js/vendors/select2.min.js"></script>
 <script src="/admin/assets/js/vendors/perfect-scrollbar.js"></script>
@@ -35,6 +53,7 @@
 <script src="/admin/assets/js/vendors/chart.js"></script>
 <script src="/admin/assets/js/main.js?v=1.0.0"></script>
 <script src="/admin/assets/js/custom-chart.js" type="text/javascript"></script>
-@livewireScripts
+
+
 </body>
 </html>
