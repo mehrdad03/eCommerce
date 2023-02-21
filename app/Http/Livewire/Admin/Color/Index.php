@@ -3,37 +3,49 @@
 namespace App\Http\Livewire\Admin\Color;
 
 use App\Models\Color;
+use App\Models\Localization;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Index extends Component
 {
 
-    public $name = '', $code = '', $color_id;
+    public $names = [], $code = '', $color_id;
 
     public function saveColor($formData, Color $colors)
     {
+        $languages = [];
+        foreach (config('app.languages') as $locale) {
+
+            $languages[] = $locale;
+        }
+        $rules = [];
 
         if ($this->color_id != null) {
             $color_id = $this->color_id;
-            $validator = Validator::make($formData, [
-                'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            ]);
+            foreach ($languages as $lang) {
+
+                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+            }
         } else {
             $color_id = 0;
-            $validator = Validator::make($formData, [
-                'name' => 'required |unique:colors,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'code' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            ]);
+            foreach ($languages as $lang) {
+
+                $rules[$lang] = "required |unique:localizations,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+            }
+
         }
 
+        $rules['code'] = 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
+
+        $validator = Validator::make($formData, $rules);
         $validator->validate();
         $this->resetValidation();
         $colors->saveColor($formData, $color_id);
 
         //reset values after edit
-        $this->name = '';
+
+        $this->names = [];
         $this->code = '';
         $this->color_id = '';
 
@@ -42,7 +54,17 @@ class Index extends Component
     public function editColor($color_id)
     {
         $color = Color::query()->where('id', $color_id)->first();
-        $this->name = $color->name;
+        $colorLocales = Localization::query()->where([
+            'property_id' => $color_id,
+            'type' => 'color',
+        ])->get();
+
+        foreach ($colorLocales as $locale) {
+
+            $this->names[$locale->local] = $locale->name;
+
+        }
+
         $this->code = $color->code;
         $this->color_id = $color->id;
     }
@@ -50,11 +72,16 @@ class Index extends Component
     public function deleteColor($color_id)
     {
         Color::query()->where('id', $color_id)->delete();
+        Localization::query()->where([
+            'property_id' => $color_id,
+            'type' => 'color',
+        ])->delete();
     }
 
     public function render()
     {
-        $colors = Color::all();
+        $colors = Color::with('locales')->get();
+
         return view('admin.livewire.color.index', ['colors' => $colors])->extends('admin.layouts.app');
     }
 }

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('localizations', function (Blueprint $table) {
             $table->id();
             $table->longText('name');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('type');
-            $table->foreignId('property_id');
+            $table->foreignId('property_id')->nullable();
             $table->string('local');
             $table->timestamps();
         });
