@@ -12,9 +12,11 @@ class Index extends Component
 
 
     public $names = [], $code = '', $color_id;
+    protected $listeners = ['delete', 'saveColor'];
 
     public function saveColor($formData, Color $colors)
     {
+
         $languages = [];
         foreach (config('app.languages') as $locale) {
 
@@ -39,20 +41,27 @@ class Index extends Component
 
         $rules['code'] = 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
 
+
         $validator = Validator::make($formData, $rules);
         $validator->validate();
         $this->resetValidation();
         $colors->saveColor($formData, $color_id);
 
+
+        $this->dispatchBrowserEvent('toastr:info',
+            ['message' => ' Record Add successfully',
+            ]);
+
         //reset values after edit
+
 
         $this->names = [];
         $this->code = '';
         $this->color_id = '';
 
+
     }
 
-    protected $listeners = ['delete'];
 
     public function editColor($color_id)
     {
@@ -75,6 +84,7 @@ class Index extends Component
 
     public function deleteConfirm($id)
     {
+
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
             'title' => 'Are you sure?',
@@ -91,6 +101,8 @@ class Index extends Component
             'property_id' => $color_id,
             'type' => 'color',
         ])->delete();
+
+
     }
 
     public function render()
