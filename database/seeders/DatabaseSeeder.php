@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CategoriesTableSeeder::class);
         $this->call(ColorsTableSeeder::class);
         $this->call(LocalizationsTableSeeder::class);
         $this->call(ColorsTableSeeder::class);
@@ -27,6 +28,5 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(CategoriesTableSeeder::class);
     }
 }
