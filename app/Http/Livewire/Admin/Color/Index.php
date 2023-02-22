@@ -72,9 +72,7 @@ class Index extends Component
         ])->get();
 
         foreach ($colorLocales as $locale) {
-
             $this->names[$locale->local] = $locale->name;
-
         }
 
         $this->code = $color->code;
@@ -87,7 +85,7 @@ class Index extends Component
 
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
-            'title' => 'Are you sure?',
+            'title' => trans('alerts.warning'),
             'text' => '',
             'id' => $id
         ]);
