@@ -1,4 +1,5 @@
 <?php
 return [
-    'warning'=>'Are You Sure?'
+    'warning' => 'Are You Sure?',
+    'success' => 'The operation was successful'
 ];

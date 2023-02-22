@@ -48,9 +48,9 @@ class Index extends Component
         $colors->saveColor($formData, $color_id);
 
 
-        $this->dispatchBrowserEvent('toastr:info',
-            ['message' => ' Record Add successfully',
-            ]);
+        $this->dispatchBrowserEvent('success', [
+            'message' => trans('alerts.success')
+        ]);
 
         //reset values after edit
 
@@ -99,6 +99,11 @@ class Index extends Component
             'property_id' => $color_id,
             'type' => 'color',
         ])->delete();
+
+        $this->dispatchBrowserEvent('success', [
+            'message' => 'The operation was successful'
+        ]);
+
 
 
     }
