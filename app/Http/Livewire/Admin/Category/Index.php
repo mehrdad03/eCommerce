@@ -25,7 +25,7 @@ class Index extends Component
         } else {
             $cat_id = 0;
             $validator = Validator::make($formData, [
-               // 'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
+                // 'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'name' => 'required ||unique:categories,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
                 'icon' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
@@ -33,7 +33,7 @@ class Index extends Component
         }
 
         $validator->validate();
-        $this->resetValidation ();
+        $this->resetValidation();
         $categories->saveCategory($formData, $cat_id);
 
         //$this->local = '';
@@ -47,7 +47,7 @@ class Index extends Component
     public function editCategory($cat_id)
     {
         $category = Category::query()->where('id', $cat_id)->first();
-       // $this->local = $category->local;
+        // $this->local = $category->local;
         $this->name = $category->name;
         $this->slug = $category->slug;
         $this->icon = $category->icon;
@@ -55,10 +55,14 @@ class Index extends Component
         $this->cat_id = $category->id;
     }
 
+
+
+
+
     public function deleteCategory($cat_id)
     {
-        Category::query()->where('id',$cat_id)->delete();
-        Localization::query()->where('property_id',$cat_id)->delete();
+        Category::query()->where('id', $cat_id)->delete();
+        Localization::query()->where('property_id', $cat_id)->delete();
     }
 
     public function render()

@@ -34,7 +34,6 @@ class Color extends Model
                 ],
                 [
                     'name' => $formData[$locale],
-
                 ]
             );
         }

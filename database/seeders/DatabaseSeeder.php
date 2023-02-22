@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CategoriesTableSeeder::class);
         $this->call(ColorsTableSeeder::class);
         $this->call(LocalizationsTableSeeder::class);
-        $this->call(ColorsTableSeeder::class);
-
 
 
         // \App\Models\User::factory(10)->create();
@@ -27,6 +26,5 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(CategoriesTableSeeder::class);
     }
 }

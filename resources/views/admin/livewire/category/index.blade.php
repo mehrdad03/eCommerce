@@ -14,35 +14,15 @@
                 <div class="col-md-3">
                     <form wire:submit.prevent="saveCategory(Object.fromEntries(new FormData($event.target)))">
                         <div class="mb-4">
-                            <label class="form-label" for="local">@lang('form-labels.category-local')</label>
-                            <select value="{{$local}}" class="form-select @error('local') error-input-border @enderror"
-                                    name="local" id="local">
-                                @foreach($errors->get('local') as $message)
-                                    <sapan wire:loading.remove
-                                           class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
-                                @endforeach
-                                <option>select language</option>
-                                @foreach($localizations as $localization)
-                                    <option
-                                        @if($category_id==$localization->property_id)
-                                            selected="selected"
-                                        @endif
-                                        value="{{$localization->local}}">{{$localization->local}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-4">
                             <label class="form-label" for="name">@lang('form-labels.category-name')</label>
-                            <input value="{{$name}}" class="form-control  @error('name') error-input-border @enderror"
-                                   name="name"
-                                   id="name" type="text">
+                            <input value="{{$name}}" class="form-control  @error('name') error-input-border @enderror" name="name" id="name" type="text">
                             @foreach ($errors->get('name') as $message)
-                                <span wire:loading.remove
-                                      class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
+                                <span wire:loading.remove class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
                             @endforeach
                         </div>
                         <div class="mb-4">
+                            @foreach($localizations as $localization)
+                            @endforeach
                             <label class="form-label" for="icon">@lang('form-labels.category-icon')</label>
                             <select class="form-select @error('icon') error-input-border @enderror"
                                     name="icon"
@@ -56,27 +36,29 @@
                                     @if($category_id==$localization->property_id)
                                         selected="selected"
                                     @endif
-                                    value="{{$localization->property_id}}">{{$localization->name}}
+                                    value="{{$localization->property_id}}">{{$localization->icon}}
                                 </option>
                             </select>
                         </div>
+
                         <div class="mb-4">
                             <label class="form-label"
                                    for="category_id">@lang('form-labels.category-category_id')</label>
                             <select
-                                    class="form-select @error('category_id') error-input-border @enderror"
-                                    name="category_id" id="category_id">
+                                class="form-select @error('category_id') error-input-border @enderror"
+                                name="category_id" id="category_id">
                                 @foreach($errors->get('category_id') as $message)
                                     <sapan wire:loading.remove
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
-                                <option>parent</option>
-                                <option
-                                    @if($category_id==$localization->property_id)
-                                        selected="selected"
-                                    @endif
-                                    value="{{$localization->property_id}}">{{$localization->name}}
-                                </option>
+                                @foreach($categories as $category)
+                                    <option
+                                        @if($category_id==$localization->property_id)
+                                            selected="selected"
+                                        @endif
+                                        value="{{$category->category_id}}">{{optional($category->parent)->name}}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -101,7 +83,7 @@
                                 <th>@lang('form-labels.category-name')</th>
                                 <th>@lang('form-labels.category-local')</th>
                                 <th>@lang('form-labels.category-icon')</th>
-{{--                                <th>@lang('form-labels.category-category_id')</th>--}}
+                                {{--                                <th>@lang('form-labels.category-category_id')</th>--}}
                                 <th class="text-end">Action</th>
                             </tr>
                             </thead>
@@ -114,17 +96,20 @@
                                         </div>
                                     </td>
                                     <td>#</td>
-                                    <td>{{optional($category->parent)->name}}</td>
+          <td>{{optional($category->parent)->name}}</td>
                                     <td>{{optional($category->parent)->local}}</td>
                                     <td>{{$category->icon}}</td>
+
                                     <td class="text-end">
                                         <div class="dropdown">
-                                            <a class="btn btn-light rounded btn-sm font-sm"  data-bs-toggle="dropdown">
+                                            <a class="btn btn-light rounded btn-sm font-sm" data-bs-toggle="dropdown">
                                                 <i class="material-icons md-more_horiz"></i>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" wire:click="editCategory('{{$category->id}}')">Edit info</a>
-                                                <a class="dropdown-item text-danger" wire:click="deleteCategory('{{$category->id}}')">Delete</a>
+                                                <a class="dropdown-item" wire:click="editCategory('{{$category->id}}')">Edit
+                                                    info</a>
+                                                <a class="dropdown-item text-danger"
+                                                   wire:click="deleteCategory('{{$category->id}}')">Delete</a>
                                             </div>
                                         </div>
                                     </td>
