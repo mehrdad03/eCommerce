@@ -16,7 +16,7 @@ return [
 
     'brand-local'=>'نوع زبان',
     'brand-name'=>'نام برند',
-    'brand-slug'=>'اسلاگ برند',
-    'brand-category_id'=>'دسته والد',
+    'brand-image'=>'تصویر برند',
+    'brand-category_id'=>'دسته والد برند',
 
 ];

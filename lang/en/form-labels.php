@@ -16,6 +16,6 @@ return [
 
     'brand-local' => 'Brand local',
     'brand-name' => 'Brand name',
-    'brand-slug' => 'Brand slug',
-    'brand-category_id' => 'Brand category_id',
+    'brand-image' => 'Brand image',
+    'brand-category_id' => 'Brand category',
 ];

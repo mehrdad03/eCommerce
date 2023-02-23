@@ -6,63 +6,76 @@ use App\Models\Brand;
 use App\Models\Localization;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
 
 
-    public $local = '', $name = '', $slug = '', $category_id = '', $brand_id;
+    public $names = [], $category_id = '', $image='', $brand_id;
 
     public function saveBrand($formData, Brand $brands)
     {
+
+        $languages = [];
+        foreach (config('app.languages') as $locale) {
+
+            $languages[] = $locale;
+        }
+        $rules = [];
+
         if ($this->brand_id != null) {
             $brand_id = $this->brand_id;
-            $validator = Validator::make($formData, [
-                'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'slug' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            ]);
+            foreach ($languages as $lang) {
+                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+            }
         } else {
             $brand_id = 0;
-            $validator = Validator::make($formData, [
-                'local' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'name' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'slug' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-                'category_id' => 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u',
-            ]);
+            foreach ($languages as $lang) {
+
+                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+            }
         }
+        $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
+        $rules['image'] = 'image';
+        dd($formData);
+
+        $validator = Validator::make($formData, $rules);
+
         $validator->validate();
         $this->resetValidation();
-        $brands->saveBrand($formData, $brand_id);
 
-        $this->local = '';
-        $this->name = '';
-        $this->slug = '';
+       $brands->saveBrand($formData, $brand_id);
+
+
+        $this->names = [];
         $this->category_id = '';
+        $this->image = '';
         $this->brand_id = '';
+
+
     }
 
-    public function editBrand($brand_id)
-    {
-        $brand = Brand::query()->where('id', $brand_id)->first();
-        $this->local = $brand->local;
-        $this->name = $brand->name;
-        $this->slug = $brand->slug;
-        $this->category_id = $brand->category_id;
-        $this->brand_id = $brand->id;
-    }
+//    public function editBrand($brand_id)
+//    {
+//        $brand = Brand::query()->where('id', $brand_id)->first();
+//        $this->local = $brand->local;
+//        $this->name = $brand->name;
+//        $this->slug = $brand->slug;
+//        $this->category_id = $brand->category_id;
+//        $this->brand_id = $brand->id;
+//    }
 
-    public function deleteBrand($brand_id)
-    {
-        Brand::query()->where('id', $brand_id)->delete();
-        Localization::query()->where('property_id', $brand_id)->delete();
-    }
+//    public function deleteBrand($brand_id)
+//    {
+//        Brand::query()->where('id', $brand_id)->delete();
+//        Localization::query()->where('property_id', $brand_id)->delete();
+//    }
 
     public function render()
     {
-        $brands = Brand::all();
+        $brands = Brand::with('locales')->get();
         $localizations = Localization::all();
         return view('admin.livewire.brand.create', ['brands' => $brands, 'localizations' => $localizations])->extends('admin.layouts.app');
     }

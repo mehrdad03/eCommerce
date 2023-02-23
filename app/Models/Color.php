@@ -19,7 +19,8 @@ class Color extends Model
         $color = Color::query()->updateOrCreate(
             [
                 'id' => $color_id
-            ], [
+            ],
+            [
                 'code' => $formData['code'],
             ]
         );
