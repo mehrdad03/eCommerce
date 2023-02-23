@@ -41,6 +41,7 @@
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
                             <input value="{{$image}}" class="form-control" name="image" id="image" type="file">
                         </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">@lang('btn.submit')</button>
                         </div>
@@ -75,11 +76,12 @@
                                         </div>
                                     </td>
                                     <td>{{$loop->index+1}}</td>
+
                                     @foreach($brand->locales as $lang)
                                         <td>{{$lang->name}}</td>
                                     @endforeach
 
-                                        <td>{{$brand->category_id}}</td>
+                                        <td>{{optional($brand->parent)->name}}</td>
 
                                     <td><img src="{{$brand->image}}" alt="">{{$brand->image}}</td>
 

@@ -6,14 +6,14 @@ use App\Models\Brand;
 use App\Models\Localization;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
 
 
-
-    public $names = [], $category_id, $image = '', $brand_id;
+    public $names = [], $category_id = '', $image='', $brand_id;
 
     public function saveBrand($formData, Brand $brands)
     {
@@ -34,22 +34,25 @@ class Create extends Component
             $brand_id = 0;
             foreach ($languages as $lang) {
 
-                $rules[$lang] = "required |unique:localizations,name| regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
             }
         }
         $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
-//        $rules['image'] = 'required | image|mimes:png,jpg,pdf|max:102400';
+        $rules['image'] = 'image';
+        dd($formData);
 
         $validator = Validator::make($formData, $rules);
+
         $validator->validate();
         $this->resetValidation();
-        $brands->saveBrand($formData, $brand_id);
+
+       $brands->saveBrand($formData, $brand_id);
 
 
         $this->names = [];
         $this->category_id = '';
-//        $this->image = '';
-//        $this->brand_id = '';
+        $this->image = '';
+        $this->brand_id = '';
 
 
     }
@@ -73,7 +76,7 @@ class Create extends Component
     public function render()
     {
         $brands = Brand::with('locales')->get();
-$localizations=Localization::all();
-        return view('admin.livewire.brand.create', ['brands' => $brands,'localizations'=>$localizations])->extends('admin.layouts.app');
+        $localizations = Localization::all();
+        return view('admin.livewire.brand.create', ['brands' => $brands, 'localizations' => $localizations])->extends('admin.layouts.app');
     }
 }

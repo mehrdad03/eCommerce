@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
+use Livewire\WithFileUploads;
 class Brand extends Model
 {
     use HasFactory;
-
+    use WithFileUploads;
     protected $guarded = [];
 
 
@@ -21,7 +21,7 @@ class Brand extends Model
             ],
             [
                 'category_id' => $formData['category_id'],
-//                'image' => $formData['image']
+                'image' => $formData['image']
             ]
         );
         foreach (config('app.languages') as $locale) {
@@ -43,7 +43,11 @@ class Brand extends Model
     {
         return $this->hasMany(Localization::class, 'property_id')
             ->where('type', '=','brand');
+    }
 
+    public function parent()
+    {
+        return $this->belongsTo(Localization::class, 'category_id');
     }
 
 }

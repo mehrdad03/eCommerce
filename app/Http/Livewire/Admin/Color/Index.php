@@ -41,7 +41,6 @@ class Index extends Component
 
         $rules['code'] = 'required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
 
-
         $validator = Validator::make($formData, $rules);
         $validator->validate();
         $this->resetValidation();
