@@ -39,8 +39,9 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
-                            <input value="{{$image}}" class="form-control" name="image" id="image" type="file">
+                            <input wire:model="image" class="form-control" name="image" id="image" type="file">
                         </div>
+                            @error('image') <span class="error">{{ $message }}</span> @enderror
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">@lang('btn.submit')</button>

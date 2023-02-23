@@ -13,12 +13,12 @@ class Create extends Component
     use WithFileUploads;
 
 
-    public $names = [], $category_id = '', $image='', $brand_id;
+    public $names = [], $category_id = '', $image, $brand_id;
 
     public function saveBrand($formData, Brand $brands)
     {
+        dd($this->image);
 
-        $languages = [];
         foreach (config('app.languages') as $locale) {
 
             $languages[] = $locale;
@@ -39,14 +39,14 @@ class Create extends Component
         }
         $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
         $rules['image'] = 'image';
-        dd($formData);
+
 
         $validator = Validator::make($formData, $rules);
 
         $validator->validate();
         $this->resetValidation();
 
-       $brands->saveBrand($formData, $brand_id);
+        $brands->saveBrand($formData, $brand_id);
 
 
         $this->names = [];
