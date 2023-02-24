@@ -28,16 +28,16 @@ class Index extends Component
         if ($this->brand_id != null) {
             $brand_id = $this->brand_id;
             foreach ($languages as $lang) {
-                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+                $rules[$lang] = "required| string|min:3|max:30|nullable | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+
             }
         } else {
             $brand_id = 0;
             foreach ($languages as $lang) {
-
-                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
+                $rules[$lang] = "required | string|min:3|max:30|nullable | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
             }
         }
-        $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
+        $rules['category_id'] = ' regex:/^[0-9@$#^%&*!]+$/u';
         $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
         $image = $this->image;
 
@@ -89,14 +89,13 @@ class Index extends Component
     public function delete($brand_id)
     {
 
-        $brand = Brand::query()->where('id', $brand_id)->delete();
+        $brand = Brand::query()->where('id', $brand_id)->get();
+        $old_image = $brand[0]->image;
+        if ($old_image != null) {
+            unlink('storage/photos/brands/' . $old_image);
+        }
 
-//        $old_image = $brand->image;
-//
-//        if ($brand->hasFile('image')) {
-//            unlink('public/photos/brands' . $old_image);
-//        }
-//        $brand = Brand::query()->where('id', $brand_id)->delete();
+        Brand::query()->where('id', $brand_id)->delete();
         Localization::query()->where([
             'property_id' => $brand_id,
             'type' => 'brand',
