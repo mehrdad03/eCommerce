@@ -23,6 +23,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="code">@lang('form-labels.color-code')</label>
                             <input value="{{$code}}" class="form-control" name="code" id="code" type="color">
+
                         </div>
 
                         <div class="d-grid">

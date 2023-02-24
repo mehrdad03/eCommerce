@@ -37,20 +37,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('colors')->name('colors.')->group(function () {
 
         Route::get('/index', App\Http\Livewire\Admin\Color\index::class)->name('index');
-        Route::get('/create', App\Http\Livewire\Admin\color\Create::class)->name('create');
-        Route::get('/edit', App\Http\Livewire\Admin\color\Edit::class)->name('edit');
     });
     Route::prefix('sizes')->name('sizes.')->group(function () {
 
         Route::get('/index', App\Http\Livewire\Admin\size\Index::class)->name('index');
-        Route::get('/create', App\Http\Livewire\Admin\size\Create::class)->name('create');
-        Route::get('/edit', App\Http\Livewire\Admin\size\Edit::class)->name('edit');
     });
     Route::prefix('brands')->name('brands.')->group(function () {
 
         Route::get('/index', App\Http\Livewire\Admin\brand\Index::class)->name('index');
-        Route::get('/create', App\Http\Livewire\Admin\brand\Create::class)->name('create');
-        Route::get('/edit', App\Http\Livewire\Admin\brand\Edit::class)->name('edit');
     });
     Route::prefix('orders')->name('orders.')->group(function () {
 

@@ -1,44 +1,115 @@
 <section class="content-main">
     <div class="content-header">
-        <div>
-            <h2 class="content-title card-title">برند</h2>
-            <p>مدیریت برند و فروشنده</p>
-        </div>
-        <div><a class="btn btn-primary" href="/admin/brands/create"><i class="text-muted material-icons md-post_add"></i>افزودن برند جدید</a></div>
     </div>
-    <div class="card mb-4">
-        <header class="card-header">
-            <div class="row gx-3">
-                <div class="col-lg-4 mb-lg-0 mb-15 me-auto">
-                    <input class="form-control" type="text" placeholder="Search...">
-                </div>
-                <div class="col-lg-2 col-6">
-                    <div class="custom_select">
-                        <select class="form-select select-nice">
-                            <option selected="">Categories</option>
-                            <option>Technology</option>
-                            <option>Fashion</option>
-                            <option>Home Decor</option>
-                            <option>Healthy</option>
-                            <option>Travel</option>
-                            <option>Auto-car</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-6">
-                    <input class="form-control" type="date" name="">
-                </div>
-            </div>
-        </header>
+    <div class="card">
         <div class="card-body">
-            <div class="row gx-3">
-                <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                    <figure class="card border-1">
-                        <div class="card-header bg-white text-center"><img class="img-fluid" height="76" src="/admin/assets/imgs/brands/brand-1.jpg" alt="Logo"></div>
-                        <figcaption class="card-body text-center">
-                            <h6 class="card-title m-0">Cardinal</h6><a href="#"> 398 items</a>
-                        </figcaption>
-                    </figure>
+            <div class="row">
+                <div class="col-md-3">
+                    <form wire:submit.prevent="saveBrand(Object.fromEntries(new FormData($event.target)))">
+                        @foreach(config('app.languages') as $lang)
+                            <div class="mb-4">
+                                <label class="form-label" for="name">@lang('form-labels.brand-name') {{$lang}} </label>
+                                <input value="{{@$names[$lang]}}"
+                                       class="form-control @error('name') error-input-border @enderror"
+                                       name="{{$lang}}"
+                                       id="name_{{$lang}}" type="text">
+                                @foreach ($errors->get($lang) as $message)
+                                    <span wire:loading.remove
+                                          class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
+                                @endforeach
+                            </div>
+                        @endforeach
+                        @foreach($brands as $brand)
+                        @endforeach
+                        <div class="mb-4">
+                            <label class="form-label" for="category_id">@lang('form-labels.brand-category_id')</label>
+                            <select class="form-select @error('category_id') error-input-border @enderror"
+                                    name="category_id" id="category_id">
+                                @foreach($errors->get('category_id') as $message)
+                                    <sapan wire:loading.remove
+                                           class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
+                                @endforeach
+                                <option  selected disabled value="">choose parent category</option>
+                                @foreach($localizations as $localization)
+                                    <option
+                                        value="{{$localization->id}}">
+                                        {{$localization->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
+                            <input wire:model="image" class="form-control" id="image" type="file" >
+                            <div wire:loading wire:target="image">Uploading...</div>
+                        </div>
+                        @error('image') <span class="error">{{ $message }}</span> @enderror
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">@lang('btn.submit')</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </div>
+                                </th>
+                                <th>#</th>
+                                @foreach(config('app.languages') as $lang)
+                                    <th>@lang('form-labels.brand-name') {{$lang}}  </th>
+                                @endforeach
+                                <th>@lang('form-labels.brand-category_id')</th>
+                                <th style="width: 10%;">@lang('form-labels.brand-image')</th>
+                                <th class="text-end">@lang('form-labels.action')</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($brands as $brand)
+                                <tr>
+                                    <td class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                        </div>
+                                    </td>
+                                    <td>{{$loop->index+1}}</td>
+
+                                    @foreach($brand->locales as $lang)
+                                        <td>{{$lang->name}}</td>
+                                    @endforeach
+
+                                    <td>{{optional($brand->parent)->name}}</td>
+                                    <td>
+                                        <img style=" width: 153px; height: 100px;"  src="/storage/photos/brands/{{$brand->image}}" alt="">
+                                    </td>
+
+                                    <td class="text-end">
+                                        <div class="dropdown"><a class="btn btn-light rounded btn-sm font-sm" href="#"
+                                                                 data-bs-toggle="dropdown"><i
+                                                    class="material-icons md-more_horiz"></i></a>
+
+
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" wire:click="editBrand('{{$brand->id}}')">Edit
+                                                    info</a>
+                                                <a class="dropdown-item text-danger"
+                                                   wire:click="deleteConfirm({{$brand->id}})">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

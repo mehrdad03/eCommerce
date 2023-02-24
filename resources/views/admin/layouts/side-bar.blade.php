@@ -37,22 +37,18 @@
 
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
                         class="icon material-icons md-color_lens"></i><span class="text">colors</span></a>
-                <div class="submenu"><a href="/admin/colors/index">Order list 1</a><a href="/admin/colors/create">Order
-                        list 2</a><a href="/admin/colors/edit">Order detail</a>
+                <div class="submenu"><a href="/admin/colors/index">Color</a>
                 </div>
             </li>
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
                         class="icon material-icons md-format_size"></i><span class="text">sizes</span></a>
-                <div class="submenu"><a href="/admin/sizes/index">Order list 1</a><a href="/admin/sizes/create">Order
-                        list 2</a><a href="/admin/sizes/edit">Order detail</a>
+                <div class="submenu"><a href="/admin/sizes/index">Size</a>
                 </div>
             </li>
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
                         class="icon material-icons md-branding_watermark"></i><span class="text">brands</span></a>
                 <div class="submenu">
-                    <a href="/admin/brands/index">Order list 1</a>
-                    <a href="/admin/brands/create">Order list 2</a>
-                    <a href="/admin/brands/edit">Order detail</a>
+                    <a href="/admin/brands/index">Brand</a>
                 </div>
             </li>
 
@@ -87,7 +83,7 @@
             <li class="menu-item"><a class="menu-link" href="/admin/review/index"><i
                         class="icon material-icons md-comment"></i><span class="text">Reviews</span></a></li>
             <li class="menu-item"><a class="menu-link" href="#"><i
-                        class="icon material-icons md-stars"></i><span class="text">Brands</span></a></li>
+                        class="icon material-icons md-stars"></i><span class="text">mark</span></a></li>
             <li class="menu-item"><a class="menu-link" disabled="" href="#"><i
                         class="icon material-icons md-pie_chart"></i><span class="text">Statistics</span></a></li>
         </ul>
