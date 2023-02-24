@@ -88,7 +88,7 @@
 
                                     <td>{{optional($brand->parent)->name}}</td>
                                     <td>
-                                        <img style=" width: 153px; height: 100px;"  src="/storage/photos/brands/{{$brand->image}}" alt="">
+                                        <img style="  width: 153px; height: 100px;"  src="/storage/photos/brands/{{$brand->image}}" alt="">
                                     </td>
 
                                     <td class="text-end">
