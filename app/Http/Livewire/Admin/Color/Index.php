@@ -9,8 +9,6 @@ use Livewire\Component;
 
 class Index extends Component
 {
-
-
     public $names = [], $code = '', $color_id;
     protected $listeners = ['delete', 'saveColor'];
 

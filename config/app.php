@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -192,9 +191,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
+        * Package Service Providers...
+        */
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
