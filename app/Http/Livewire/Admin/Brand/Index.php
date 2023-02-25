@@ -20,9 +20,9 @@ class Index extends Component
 
     public function saveBrand($formData, Brand $brands)
     {
+
         $languages = [];
         foreach (config('app.languages') as $locale) {
-
             $languages[] = $locale;
         }
         $rules = [];
@@ -36,14 +36,12 @@ class Index extends Component
             $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
         }
         $rules['category_id'] = 'required |regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
-        $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
+        $rules['image'] = 'required |image|mimes:jpg,jpeg,png,gif|max:1024';
+//dd($rules);
         $image = $this->image;
-
-
         $validator = Validator::make($formData, $rules);
         $validator->validate();
         $this->resetValidation();
-
         $brands->saveBrand($formData, $brand_id, $image);
 
         $this->names = [];
