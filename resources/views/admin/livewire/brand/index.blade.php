@@ -9,7 +9,7 @@
                         @foreach(config('app.languages') as $lang)
                             <div class="mb-4">
                                 <label class="form-label" for="name">@lang('form-labels.brand-name') {{$lang}} </label>
-                                <input value="{{@$names[$lang]}}"
+                                <input value="{{@$names[$lang]}}" wire:model.defer="names.{{$lang}}"
                                        class="form-control @error('name') error-input-border @enderror"
                                        name="{{$lang}}"
                                        id="name_{{$lang}}" type="text">
@@ -24,7 +24,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="category_id">@lang('form-labels.brand-category_id')</label>
                             <select class="form-select @error('category_id') error-input-border @enderror"
-                                    name="category_id" id="category_id">
+                                    name="category_id" id="category_id" wire:model.defer="category_id">
                                 @foreach($errors->get('category_id') as $message)
                                     <sapan wire:loading.remove
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
@@ -41,7 +41,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
-                            <input wire:model="image" class="form-control" id="image" type="file">
+                            <input  wire:model="image" class="form-control" id="image" type="file">
                             <div wire:loading wire:target="image">Uploading...</div>
                         </div>
                         @error('image') <span class="error">{{ $message }}</span> @enderror

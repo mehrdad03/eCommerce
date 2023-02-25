@@ -20,7 +20,7 @@ class Index extends Component
 
     public function saveBrand($formData, Brand $brands)
     {
-
+        $languages = [];
         foreach (config('app.languages') as $locale) {
 
             $languages[] = $locale;
@@ -29,15 +29,11 @@ class Index extends Component
 
         if ($this->brand_id != null) {
             $brand_id = $this->brand_id;
-            foreach ($languages as $lang) {
-                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
-            }
         } else {
             $brand_id = 0;
-            foreach ($languages as $lang) {
-
-                $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
-            }
+        }
+        foreach ($languages as $lang) {
+            $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
         }
         $rules['category_id'] = 'required |regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
         $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
@@ -50,14 +46,16 @@ class Index extends Component
 
         $brands->saveBrand($formData, $brand_id, $image);
 
-        $this->dispatchBrowserEvent('success', [
-            'message' => trans('alerts.success')
-        ]);
-
         $this->names = [];
         $this->category_id = '';
         $this->image = '';
         $this->brand_id = '';
+
+        $this->dispatchBrowserEvent('success', [
+            'message' => trans('alerts.success')
+        ]);
+
+
     }
 
     public function editBrand($brand_id)
@@ -118,7 +116,7 @@ class Index extends Component
     public function render()
     {
         $brands = Brand::with('locales', 'file')->latest()->get();
-        $localizations = Localization::query()->where('type','=','category')->get();
+        $localizations = Localization::query()->where('type', '=', 'category')->get();
         return view('admin.livewire.brand.index', ['brands' => $brands, 'localizations' => $localizations])->extends('admin.layouts.app');
     }
 }
