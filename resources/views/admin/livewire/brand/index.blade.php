@@ -29,7 +29,7 @@
                                     <sapan wire:loading.remove
                                            class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
                                 @endforeach
-                                <option  selected disabled value="">choose parent category</option>
+                                <option selected disabled value="">choose parent category</option>
                                 @foreach($localizations as $localization)
                                     <option
                                         value="{{$localization->id}}">
@@ -41,7 +41,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
-                            <input wire:model="image" class="form-control" id="image" type="file" >
+                            <input wire:model="image" class="form-control" id="image" type="file">
                             <div wire:loading wire:target="image">Uploading...</div>
                         </div>
                         @error('image') <span class="error">{{ $message }}</span> @enderror
@@ -88,7 +88,8 @@
 
                                     <td>{{optional($brand->parent)->name}}</td>
                                     <td>
-                                        <img style=" width: 153px; height: 100px;"  src="/storage/photos/brands/{{$brand->image}}" alt="">
+                                        <img style=" width: 153px; height: 100px;"
+                                             src="/images/brands/{{@$brand->file->name}}" alt="">
                                     </td>
 
                                     <td class="text-end">

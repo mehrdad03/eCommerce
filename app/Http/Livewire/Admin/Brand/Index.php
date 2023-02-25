@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admin\Brand;
 
 use App\Models\Brand;
+use App\Models\File;
 use App\Models\Localization;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -37,7 +39,7 @@ class Index extends Component
                 $rules[$lang] = "required | regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u";
             }
         }
-        $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
+        $rules['category_id'] = 'required |regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
         $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
         $image = $this->image;
 
@@ -45,6 +47,7 @@ class Index extends Component
         $validator = Validator::make($formData, $rules);
         $validator->validate();
         $this->resetValidation();
+
         $brands->saveBrand($formData, $brand_id, $image);
 
         $this->dispatchBrowserEvent('success', [
@@ -88,29 +91,34 @@ class Index extends Component
 
     public function delete($brand_id)
     {
-
-        $brand = Brand::query()->where('id', $brand_id)->delete();
-
-//        $old_image = $brand->image;
-//
-//        if ($brand->hasFile('image')) {
-//            unlink('public/photos/brands' . $old_image);
-//        }
-//        $brand = Brand::query()->where('id', $brand_id)->delete();
-        Localization::query()->where([
-            'property_id' => $brand_id,
+        $query = File::query()->where([
+            'product_id' => $brand_id,
             'type' => 'brand',
-        ])->delete();
+        ]);
+        $brandFileName = $query->pluck('name')->first();
 
+        DB::transaction(function () use ($brandFileName, $query, $brand_id) {
+            //delete file
+            unlink('images/brands/' . $brandFileName);
+
+            //delete data from tables
+            $query->delete();
+            Brand::query()->where('id', $brand_id)->delete();
+            Localization::query()->where([
+                'property_id' => $brand_id,
+                'type' => 'brand',
+            ])->delete();
+
+        });
         $this->dispatchBrowserEvent('success', [
-            'message' => 'The operation was successful'
+            'message' => trans('alerts.success')
         ]);
     }
 
     public function render()
     {
-        $brands = Brand::with('locales')->get();
-        $localizations = Localization::all();
+        $brands = Brand::with('locales', 'file')->latest()->get();
+        $localizations = Localization::query()->where('type','=','category')->get();
         return view('admin.livewire.brand.index', ['brands' => $brands, 'localizations' => $localizations])->extends('admin.layouts.app');
     }
 }

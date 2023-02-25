@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->string('type')->default('image');
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->boolean('cover')->default(false);
+            $table->timestamps();
         });
     }
 
