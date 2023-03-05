@@ -5,7 +5,7 @@ return [
     'color-name' => 'Color name',
     'color-code' => 'Color code ',
     'action' => 'Action',
-    'size-size' => 'Size',
+    'size-name' => 'Size',
     'size-category_id' => 'Category',
 
     'category-local'=>'Category local',

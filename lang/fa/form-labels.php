@@ -5,8 +5,8 @@ return [
     'color-name' => 'نام رنگ',
     'color-code' => 'کد رنگ',
     'action' => 'عملیات',
-    'size-size'=>'سایز',
-    'size-category_id'=>'دسته بندی',
+    'size-name'=>'سایز',
+    'size-category_id'=>'دسته والد',
 
     'category-local'=>'نوع زبان',
     'category-name'=>'نام دسته بندی',
