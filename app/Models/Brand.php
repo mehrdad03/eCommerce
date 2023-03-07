@@ -36,13 +36,11 @@ class Brand extends Model
                 Image::make($image)->crop('300', '300')->save(public_path('images/brands/' . $image_name));
             }
 
-
             $brand = $this->insertToBrandTable($brand_id, $formData);
             $this->insertToLocalizationsTable($brand->id, $formData);
             if ($image) {
                 $this->insertToFileTable($brand->id, $image_name);
             }
-
 
         });
     }
@@ -96,7 +94,7 @@ class Brand extends Model
             ->where('type', '=', 'brand');
     }
 
-    public function parent()
+    public function local()
     {
         return $this->belongsTo(Localization::class, 'category_id');
     }

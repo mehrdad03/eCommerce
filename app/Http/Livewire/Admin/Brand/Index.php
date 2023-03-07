@@ -38,8 +38,8 @@ class Index extends Component
             }
         }
         $rules['category_id'] = ' regex:/^[ا-یa-zA-Z0-9@$#^%&*!]+$/u';
-//        $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
-        $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif|max:1024';
+        $rules['image'] = 'image|mimes:jpg,jpeg,png,gif|max:1024';
+//        $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif|max:1024';
         $image = $this->image;
 
 

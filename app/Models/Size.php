@@ -41,7 +41,7 @@ class Size extends Model
             ->where('type', '=', 'size');
     }
 
-    public function parent()
+    public function local()
     {
         return $this->belongsTo(Localization::class, 'category_id');
     }

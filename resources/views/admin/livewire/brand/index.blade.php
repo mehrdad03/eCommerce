@@ -93,7 +93,7 @@
                                         <td>{{$lang->name}}</td>
                                     @endforeach
 
-                                    <td>{{optional($brand->parent)->name}}</td>
+                                    <td>{{optional($brand->local)->name}}</td>
                                     <td>
                                         <img style=" width: 153px; height: 100px;"
                                              src="/images/brands/{{@$brand->file->name}}" alt="">
@@ -106,8 +106,7 @@
 
 
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" wire:click="editBrand('{{$brand->id}}')">Edit
-                                                    info</a>
+                                                <a class="dropdown-item" wire:click="editBrand('{{$brand->id}}')">Edit info</a>
                                                 <a class="dropdown-item text-danger"
                                                    wire:click="deleteConfirm({{$brand->id}})">Delete</a>
                                             </div>

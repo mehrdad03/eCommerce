@@ -71,7 +71,7 @@
                                         <td>{{$lang->name}}</td>
                                     @endforeach
 
-                                    <td>{{optional($size->parent)->name}}</td>
+                                    <td>{{optional($size->local)->name}}</td>
 
                                     <td class="text-end">
                                         <div class="dropdown">
