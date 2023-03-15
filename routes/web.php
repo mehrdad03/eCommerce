@@ -23,6 +23,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/index', App\Http\Livewire\Admin\Index\index::class)->name('index');
 
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/index', \App\Http\Livewire\Admin\User\Index::class)->name('index');
+        Route::get('edit', \App\Http\Livewire\Admin\User\UserTable::class)->name('edit');
+    });
     Route::prefix('categories')->name('categories')->group(function () {
         Route::get('/index', App\Http\Livewire\Admin\category\Index::class)->name('index');
     });
@@ -70,8 +74,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/card', App\Http\Livewire\Admin\seller\Card::class)->name('card');
         Route::get('/profile', App\Http\Livewire\Admin\seller\Profile::class)->name('profile');
     });
-    Route::prefix('transactions')->name('transactions.')->group(function () {
 
+    Route::prefix('currency')->name('currency.')->group(function () {
+        Route::get('/index', \App\Http\Livewire\Admin\Currency\Index::class)->name('index');
+    });
+
+    Route::prefix('transactions')->name('transactions.')->group(function () {
         Route::get('/detail', App\Http\Livewire\Admin\transaction\Detail::class)->name('detail');
         Route::get('/index', App\Http\Livewire\Admin\transaction\Index::class)->name('index');
     });
