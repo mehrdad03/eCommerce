@@ -1,5 +1,12 @@
+@php
+    $prefix=\Illuminate\Support\Facades\Route::current()->getPrefix();
+    $rout_name=\Illuminate\Support\Facades\Route::current()->getName();
+@endphp
+
 <aside class="navbar-aside" id="offcanvas_aside">
-    <div class="aside-top"><a class="brand-wrap" href="/admin/index"><img class="logo" src="/admin/assets/imgs/theme/logo.svg" alt="Evara Dashboard">
+    <div class="aside-top"><a class="brand-wrap" href="/admin/index"><img class="logo"
+                                                                          src="/admin/assets/imgs/theme/logo.svg"
+                                                                          alt="Evara Dashboard">
         </a>
         <div>
             <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i>
@@ -8,7 +15,8 @@
     </div>
     <nav>
         <ul class="menu-aside">
-            <li class="menu-item active"><a class="menu-link" href="/admin/index"><i class="icon material-icons md-home"></i>
+            <li class="menu-item active"><a class="menu-link" href="/admin/index"><i
+                        class="icon material-icons md-home"></i>
                     <span class="text">Dashboard</span></a></li>
             <li class="menu-item has-submenu"><a class="menu-link" href="#">
                     <i class="icon material-icons md-category"></i>
@@ -31,7 +39,8 @@
             <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
                         class="icon material-icons md-shopping_cart"></i><span class="text">Orders</span></a>
                 <div class="submenu"><a href="/admin/orders/index">Order list 1</a><a href="/admin/orders/invoice">Order
-                        list 2</a><a href="/admin/orders/tracking">Order detail</a><a href="/admin/orders/detail">Order tracking</a>
+                        list 2</a><a href="/admin/orders/tracking">Order detail</a><a href="/admin/orders/detail">Order
+                        tracking</a>
                 </div>
             </li>
 
@@ -45,14 +54,13 @@
                 <div class="submenu"><a href="/admin/sizes/index">Size</a>
                 </div>
             </li>
-            <li class="menu-item has-submenu"><a class="menu-link" href="page-orders-1.html"><i
+            <li class="menu-item has-submenu {{$rout_name=='admin.brands.index' ? 'active' : ''}}"><a class="menu-link"
+                                                                                                      href="page-orders-1.html"><i
                         class="icon material-icons md-branding_watermark"></i><span class="text">brands</span></a>
                 <div class="submenu">
                     <a href="/admin/brands/index">Brand</a>
                 </div>
             </li>
-
-
 
 
             <li class="menu-item has-submenu"><a class="menu-link" href="page-sellers-cards.html"><i
@@ -79,6 +87,12 @@
                         class="icon material-icons md-person"></i><span class="text">profile</span></a>
                 <div class="submenu"><a href="/admin/profile/index">User login</a></div>
             </li>
+            <li class="menu-item {{$rout_name=='admin.currency.index' ? 'active' : ''}}"><a class="menu-link"
+                                                                                         href="{{route('admin.currency.index')}}"><i
+                        class="icon material-icons md-attach_money"></i><span class="text">currency</span></a></li>
+            <li class="menu-item {{$rout_name=='admin.users.index' ? 'active' : ''}}"><a class="menu-link"
+                                                                                         href="{{route('admin.users.index')}}"><i
+                        class="icon material-icons md-person_add"></i><span class="text">Users</span></a></li>
 
             <li class="menu-item"><a class="menu-link" href="/admin/review/index"><i
                         class="icon material-icons md-comment"></i><span class="text">Reviews</span></a></li>

@@ -11,22 +11,38 @@ class Size extends Model
 
     protected $guarded = [];
 
-
-    public function parent()
-    {
-        return $this->belongsTo(Localization::class,'category_id');
-    }
-
     public function saveSize($formDate, $size_id)
     {
-        Size::query()->updateOrCreate(
+        $size = Size::query()->updateOrCreate(
             [
                 'id' => $size_id
             ],
             [
-                'size' => $formDate['size'],
                 'category_id' => $formDate['category_id']
             ]
         );
+
+        Localization::query()->updateOrCreate(
+            [
+                'property_id' => $size->id,
+                'local' => 'en',
+                'type' => 'size'
+            ],
+            [
+                'name' => $formDate['name']
+            ]
+        );
+    }
+
+
+    public function locales()
+    {
+        return $this->hasMany(Localization::class, 'property_id')
+            ->where('type', '=', 'size');
+    }
+
+    public function local()
+    {
+        return $this->belongsTo(Localization::class, 'category_id');
     }
 }

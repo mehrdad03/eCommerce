@@ -23,12 +23,10 @@
                         @endforeach
                         <div class="mb-4">
                             <label class="form-label" for="category_id">@lang('form-labels.brand-category_id')</label>
+
                             <select class="form-select @error('category_id') error-input-border @enderror"
                                     name="category_id" id="category_id" wire:model.defer="category_id">
-                                @foreach($errors->get('category_id') as $message)
-                                    <sapan wire:loading.remove
-                                           class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
-                                @endforeach
+
                                 <option selected disabled value="">choose parent category</option>
                                 @foreach($localizations as $localization)
                                     <option
@@ -37,14 +35,22 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @foreach($errors->get('category_id') as $message)
+                                <span wire:loading.remove
+                                       class="text-danger w-100 d-block mt-2">{{$message}}</span>
+                            @endforeach
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
-                            <input  wire:model="image" class="form-control" id="image" type="file">
+                            <input  wire:model="image" class="form-control @error('image') error-input-border @enderror" id="image" type="file">
+                            @foreach ($errors->get('image') as $message)
+                                <span wire:loading.remove
+                                      class=" text-danger w-100 d-block mt-2">{{ $message}}</span>
+                            @endforeach
                             <div wire:loading wire:target="image">Uploading...</div>
                         </div>
-                        @error('image') <span class="error">{{ $message }}</span> @enderror
+
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">@lang('btn.submit')</button>
@@ -86,7 +92,7 @@
                                         <td>{{$lang->name}}</td>
                                     @endforeach
 
-                                    <td>{{optional($brand->parent)->name}}</td>
+                                    <td>{{optional($brand->local)->name}}</td>
                                     <td>
                                         <img style=" width: 153px; height: 100px;"
                                              src="/images/brands/{{@$brand->file->name}}" alt="">
@@ -99,8 +105,7 @@
 
 
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" wire:click="editBrand('{{$brand->id}}')">Edit
-                                                    info</a>
+                                                <a class="dropdown-item" wire:click="editBrand('{{$brand->id}}')">Edit info</a>
                                                 <a class="dropdown-item text-danger"
                                                    wire:click="deleteConfirm({{$brand->id}})">Delete</a>
                                             </div>

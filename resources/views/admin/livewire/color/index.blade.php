@@ -45,7 +45,7 @@
                                 </th>
                                 <th>#</th>
                                 @foreach(config('app.languages') as $lang)
-                                    <th>@lang('form-labels.color-name')</th>
+                                    <th>@lang('form-labels.color-name') {{$lang}}</th>
                                 @endforeach
                                 <th>@lang('form-labels.color-code')</th>
                                 <th class="text-end">@lang('form-labels.action')</th>
