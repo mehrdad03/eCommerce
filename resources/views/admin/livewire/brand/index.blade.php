@@ -36,13 +36,12 @@
                                 @endforeach
                             </select>
                             @foreach($errors->get('category_id') as $message)
-                                <sapan wire:loading.remove
-                                       class="text-danger w-100 d-block mt-2">{{$message}}</sapan>
+                                <span wire:loading.remove
+                                       class="text-danger w-100 d-block mt-2">{{$message}}</span>
                             @endforeach
                         </div>
 
                         <div class="mb-4">
-
                             <label class="form-label" for="image">@lang('form-labels.brand-image')</label>
                             <input  wire:model="image" class="form-control @error('image') error-input-border @enderror" id="image" type="file">
                             @foreach ($errors->get('image') as $message)

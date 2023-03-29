@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Brand;
 
 use App\Models\Brand;
+use App\Models\File;
 use App\Models\Localization;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -91,13 +92,19 @@ class Index extends Component
     {
 
         $brand = Brand::query()->where('id', $brand_id)->delete();
+        if ($brand_id != 0) {
 
-//        $old_image = $brand->image;
-//
-//        if ($brand->hasFile('image')) {
-//            unlink('public/photos/brands' . $old_image);
-//        }
-//        $brand = Brand::query()->where('id', $brand_id)->delete();
+            $brandFileName = File::query()->where([
+                'product_id' => $brand_id,
+                'type' => 'brand',
+            ])->pluck('name')->first();
+            unlink('images/brands/' . $brandFileName);
+        }
+         File::query()->where([
+            'product_id' => $brand_id,
+            'type' => 'brand',
+        ])->delete();
+
         Localization::query()->where([
             'property_id' => $brand_id,
             'type' => 'brand',
